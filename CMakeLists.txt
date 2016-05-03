@@ -21,12 +21,20 @@ include_directories(${EX_PROJ_SOURCE_DIR}/GLM_EX/glm
                     ${EX_PROJ_SOURCE_DIR}/GLEW_EX/include)
 
 add_subdirectory(${CMAKE_BINARY_DIR}/../src)
+add_subdirectory(${CMAKE_BINARY_DIR}/../include)
+
 set(ABSOLUTE_SRC_FILES "")
+set(ABSOLUTE_HDR_FILES "")
 foreach(filen ${SRC_FILES})
 	list(APPEND ABSOLUTE_SRC_FILES "src/${filen}")
 endforeach(filen)
+foreach(filen ${HDR_FILES})
+	list(APPEND ABSOLUTE_HDR_FILES "include/${filen}")
+endforeach(filen)
+include_directories(${CMAKE_BINARY_DIR}/../include)
 
-add_executable(StarEngine ${ABSOLUTE_SRC_FILES})
+
+add_executable(StarEngine ${ABSOLUTE_SRC_FILES} ${ABSOLUTE_HDR_FILES})
 #add_library(StarEngine ${ABSOLUTE_SRC_FILES})
 
 set(XRENDER_LIBS Xrandr Xcursor Xinerama Xxf86vm X11)
