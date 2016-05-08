@@ -8,6 +8,8 @@ set(HDR_FILES
 	core.h
 	gfx.h
 	se_gfx.h 
+	texture.h
+	surface.h
 	
 	PARENT_SCOPE)
 

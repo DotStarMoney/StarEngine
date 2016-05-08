@@ -5,8 +5,6 @@
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
 
-//TODO: Wrap DEBUG_ERROR_MISUSE's for missing context into single line macro
-
 namespace se
 {
 	namespace gfx
@@ -14,15 +12,15 @@ namespace se
 
 		void screen(
 			const char* _title,
-			int _scrx,
-			int _scry,
+			gfx::SurfaceDimension _scrx,
+			gfx::SurfaceDimension _scry,
 			bool _fullscreen)
 		{
 			gfx_controller::screen(_title, _scrx, _scry, _fullscreen);
 		}
 		void screen(
-			int _scrx,
-			int _scry,
+			gfx::SurfaceDimension _scrx,
+			gfx::SurfaceDimension _scry,
 			bool _fullscreen)
 		{
 			gfx_controller::screen(se::VERSION_STRING,
@@ -32,8 +30,8 @@ namespace se
 		}
 		void screen(
 			const char* _title,
-			int _scrx,
-			int _scry)
+			gfx::SurfaceDimension _scrx,
+			gfx::SurfaceDimension _scry)
 		{
 			gfx_controller::screen(se::VERSION_STRING,
 				_scrx,
@@ -41,8 +39,8 @@ namespace se
 				DEFAULT_SCREEN_FULLSCREEN_STATE);
 		}
 		void screen(
-			int _scrx,
-			int _scry)
+			gfx::SurfaceDimension _scrx,
+			gfx::SurfaceDimension _scry)
 		{
 			gfx_controller::screen(se::VERSION_STRING,
 				_scrx,
@@ -64,11 +62,11 @@ namespace se
 		{
 			return gfx_controller::get_window_title();
 		}
-		int get_screen_width()
+		gfx::SurfaceDimension get_screen_width()
 		{
 			return gfx_controller::get_screen_width();
 		}
-		int get_screen_height()
+		gfx::SurfaceDimension get_screen_height()
 		{
 			return gfx_controller::get_screen_width();
 		}
@@ -98,8 +96,8 @@ namespace se
 	}
 	void gfx_controller::screen(
 		const char* _title,
-		int _scrx,
-		int _scry,
+		gfx::SurfaceDimension _scrx,
+		gfx::SurfaceDimension _scry,
 		bool _fullscreen)
 	{
 		GLFWmonitor* fscreen_ptr;
@@ -182,7 +180,7 @@ namespace se
 #endif
 		return context.window_title;
 	}
-	int gfx_controller::get_screen_width()
+	gfx::SurfaceDimension gfx_controller::get_screen_width()
 	{
 #ifdef DEBUG_ERROR_MISUSE
 		if (!context.exists){
@@ -191,7 +189,7 @@ namespace se
 #endif
 		return context.scrx;
 	}
-	int gfx_controller::get_screen_height()
+	gfx::SurfaceDimension gfx_controller::get_screen_height()
 	{
 #ifdef DEBUG_ERROR_MISUSE
 		if (!context.exists){

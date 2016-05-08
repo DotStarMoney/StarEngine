@@ -1,6 +1,7 @@
 #ifndef GFX_H
 #define GFX_H
 
+#include "gfx_shared.h"
 #include <string>
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
@@ -12,13 +13,13 @@ namespace se
 	public:
 		static void screen(
 			const char* _title,
-			int _scrx,
-			int _scry,
+			gfx::SurfaceDimension _scrx,
+			gfx::SurfaceDimension _scry,
 			bool _fullscreen);
 		static void set_window_title(const std::string& _title);
 		static const std::string& get_window_title();
-		static int get_screen_width();
-		static int get_screen_height();
+		static gfx::SurfaceDimension get_screen_width();
+		static gfx::SurfaceDimension get_screen_height();
 	private:
 		class static_init
 		{
@@ -33,8 +34,8 @@ namespace se
 			bool exists;
 			bool fullscreen;
 			GLFWwindow* window;
-			int scrx;
-			int scry;
+			gfx::SurfaceDimension scrx;
+			gfx::SurfaceDimension scry;
 		};
 		static context_info context;
 
