@@ -32,7 +32,6 @@ namespace se
 		};
 		class ChannelFormat
 		{
-			friend class Texture;
 		public:
 			ChannelFormat(ChannelLayout _layout, ChannelType _type)
 			{

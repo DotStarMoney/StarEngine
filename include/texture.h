@@ -17,11 +17,12 @@ namespace se
 				const std::string& _filename, 
 				const ChannelFormat& _format);
 			Texture(const ChannelFormat& _format);
-			Texture(SurfaceDimension _texx, SurfaceDimension _texy);
+			Texture(SurfaceDimension _texw, SurfaceDimension _texh);
 			Texture(
-				SurfaceDimension _texx, 
-				SurfaceDimension _texy,
+				SurfaceDimension _texw, 
+				SurfaceDimension _texh,
 				const ChannelFormat& _format);
+			Texture(const Texture& _tex);
 			Texture();
 			~Texture();
 
