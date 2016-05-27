@@ -1,5 +1,5 @@
-#ifndef GFX_SHARED_H
-#define GFX_SHARED_H
+#ifndef SE_GFX_SHARED_H
+#define SE_GFX_SHARED_H
 
 namespace se
 {

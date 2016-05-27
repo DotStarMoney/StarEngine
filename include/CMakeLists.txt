@@ -10,6 +10,7 @@ set(HDR_FILES
 	se_gfx.h 
 	texture.h
 	surface.h
+	se_gfx_shared.h
 	
 	PARENT_SCOPE)
 

@@ -2,7 +2,7 @@
 #define SE_GFX_H
 
 #include <string>
-#include "gfx_shared.h"
+#include "se_gfx_shared.h"
 #include "texture.h"
 
 namespace se

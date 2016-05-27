@@ -1,7 +1,7 @@
 #ifndef GFX_H
 #define GFX_H
 
-#include "gfx_shared.h"
+#include "se_gfx_shared.h"
 #include <string>
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
