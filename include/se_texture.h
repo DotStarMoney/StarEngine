@@ -1,8 +1,8 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef SE_TEXTURE_H
+#define SE_TEXTURE_H
 
 #include "surface.h"
-#include "gfx_shared.h"
+#include "se_gfx_shared.h"
 #include <string>
 
 namespace se

@@ -1,13 +1,15 @@
 #ifndef SE_GFX_SHARED_H
 #define SE_GFX_SHARED_H
 
+#include "core.h"
+
 namespace se
 {
 	namespace gfx
 	{
 		typedef unsigned short SurfaceDimension;
-
-		enum class ChannelLayout :unsigned char
+		typedef  unsigned char ChannelLayout_t;
+		enum class ChannelLayout :ChannelLayout_t
 		{
 			R		= 1,
 			x1		= 1,
@@ -21,7 +23,10 @@ namespace se
 			RGBA	= 4,
 			x4		= 4
 		};
-		enum class ChannelType :unsigned char
+
+		const ChannelLayout DEFAULT_CHANNEL_LAYOUT = ChannelLayout::x4;
+		typedef unsigned char ChannelType_t;
+		enum class ChannelType :ChannelType_t
 		{
 			int8,
 			int16,
@@ -30,20 +35,32 @@ namespace se
 			float16,
 			float32
 		};
+		const ChannelType DEFAULT_CHANNEL_TYPE = ChannelType::float32;
 		class ChannelFormat
 		{
 		public:
+			/// <summary>READ ONLY ChannelLayout&lt;unsigned char&gt;</summary>
+			SE_CORE_READONLY_PROPERTY(ChannelFormat, ChannelLayout_t, layout);
+			/// <summary>READ ONLY ChannelType&lt;unsigned char&gt;</summary>
+			SE_CORE_READONLY_PROPERTY(ChannelFormat, ChannelType_t, type);
 			ChannelFormat(ChannelLayout _layout, ChannelType _type)
 			{
-				layout_ = _layout;
-				type_ = _type;
+				layout.value = static_cast<ChannelLayout_t>(_layout);
+				type.value = static_cast<ChannelType_t>(_type);
 			}
-			ChannelLayout layout() { return layout_; }
-			ChannelType type() { return type_; }
-		private:
-			ChannelLayout layout_;
-			ChannelType type_;
+			ChannelFormat()
+			{
+				layout.value = static_cast<ChannelLayout_t>(
+					DEFAULT_CHANNEL_LAYOUT);
+				type.value = static_cast<ChannelType_t>(
+					DEFAULT_CHANNEL_TYPE);
+			}
 		};
+		const ChannelFormat DEFAULT_CHANNEL_FORMAT =
+			ChannelFormat(ChannelLayout::x4, ChannelType::float32);
+		const SurfaceDimension DEFAULT_SCREEN_WIDTH = 640;
+		const SurfaceDimension DEFAULT_SCREEN_HEIGHT = 480;
+		const bool DEFAULT_SCREEN_FULLSCREEN_STATE = false;
 
 	}
 }

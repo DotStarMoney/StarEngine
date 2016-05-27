@@ -8,7 +8,7 @@ set(HDR_FILES
 	core.h
 	gfx.h
 	se_gfx.h 
-	texture.h
+	se_texture.h
 	surface.h
 	se_gfx_shared.h
 	
