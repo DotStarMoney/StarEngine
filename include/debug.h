@@ -1,18 +1,18 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#define DEBUG_LEVEL 0
+// debug display (warning|error|all)
+// debug log (warning|error|all)
+// debug break (warning|error|all)
+
+// debug catch (misuse|assert) (warning|error|all)
 
 
-#if(DEBUG_LEVEL == 1)
-#define DEBUG_ERROR_MISUSE
-#elif(DEBUG_LEVEL == 2)
-#define DEBUG_ERROR_LOGGING
-#define DEBUG_ERROR_MISUSE
-#endif
 
 
-#define DEBUG_ASSERT(_COND_, _ERRMSG_) _COND_
-
+// an exception can be thrown in such a way that:
+//    an operation didn't complete that may have modified something or other
+//    internal methods rely on. this includes initilaizing memory, etc...
+//    
 
 #endif

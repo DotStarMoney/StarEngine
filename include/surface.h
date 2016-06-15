@@ -7,10 +7,11 @@ namespace se
 	{
 		class Surface
 		{
-			// ------------ DUNCE ----------------
 		public:
+	
+
+		private:
 			int dunce;
-			// -----------------------------------
 		};
 
 

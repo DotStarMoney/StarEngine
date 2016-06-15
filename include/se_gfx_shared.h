@@ -7,8 +7,8 @@ namespace se
 {
 	namespace gfx
 	{
-		typedef unsigned short SurfaceDimension;
-		typedef  unsigned char ChannelLayout_t;
+		typedef unsigned int SurfaceDimension;
+		typedef unsigned char ChannelLayout_t;
 		enum class ChannelLayout :ChannelLayout_t
 		{
 			R		= 1,
@@ -23,8 +23,11 @@ namespace se
 			RGBA	= 4,
 			x4		= 4
 		};
-
-		const ChannelLayout DEFAULT_CHANNEL_LAYOUT = ChannelLayout::x4;
+		namespace Default
+		{
+			const se::gfx::ChannelLayout ChannelLayout = 
+				se::gfx::ChannelLayout::RGBA;
+		}
 		typedef unsigned char ChannelType_t;
 		enum class ChannelType :ChannelType_t
 		{
@@ -35,7 +38,11 @@ namespace se
 			float16,
 			float32
 		};
-		const ChannelType DEFAULT_CHANNEL_TYPE = ChannelType::float32;
+		namespace Default
+		{
+			const se::gfx::ChannelType ChannelType = 
+				se::gfx::ChannelType::float32;
+		}
 		class ChannelFormat
 		{
 		public:
@@ -51,16 +58,23 @@ namespace se
 			ChannelFormat()
 			{
 				layout.value = static_cast<ChannelLayout_t>(
-					DEFAULT_CHANNEL_LAYOUT);
+					Default::ChannelLayout);
 				type.value = static_cast<ChannelType_t>(
-					DEFAULT_CHANNEL_TYPE);
+					Default::ChannelType);
 			}
 		};
-		const ChannelFormat DEFAULT_CHANNEL_FORMAT =
-			ChannelFormat(ChannelLayout::x4, ChannelType::float32);
-		const SurfaceDimension DEFAULT_SCREEN_WIDTH = 640;
-		const SurfaceDimension DEFAULT_SCREEN_HEIGHT = 480;
-		const bool DEFAULT_SCREEN_FULLSCREEN_STATE = false;
+		namespace Default
+		{
+			const se::gfx::ChannelFormat ChannelFormat =
+			se::gfx::ChannelFormat
+			(
+				Default::ChannelLayout, 
+				Default::ChannelType
+			);
+			const SurfaceDimension SCREEN_WIDTH = 640;
+			const SurfaceDimension SCREEN_HEIGHT = 480;
+			const bool FULLSCREEN_STATE = false;
+		}
 
 	}
 }

@@ -30,7 +30,7 @@ namespace se
 		const std::string& get_window_title();
 		SurfaceDimension get_screen_width();
 		SurfaceDimension get_screen_height();
-
+		
 	}
 }
 

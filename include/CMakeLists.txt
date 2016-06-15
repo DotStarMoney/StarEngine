@@ -11,6 +11,9 @@ set(HDR_FILES
 	se_texture.h
 	surface.h
 	se_gfx_shared.h
+	referencetracker.h
+	noncopyable.h
+	datacache.h
 	
 	PARENT_SCOPE)
 

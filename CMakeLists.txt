@@ -18,8 +18,7 @@ execute_process(COMMAND ${CMAKE_COMMAND} --build . WORKING_DIRECTORY ${CMAKE_BIN
 
 include_directories(${EX_PROJ_SOURCE_DIR}/GLM_EX/glm
                     ${EX_PROJ_SOURCE_DIR}/GLFW_EX/include
-                    ${EX_PROJ_SOURCE_DIR}/GLEW_EX/include
-					${EX_PROJ_SOURCE_DIR}/SOIL_EX/src)
+                    ${EX_PROJ_SOURCE_DIR}/GLEW_EX/include)
 
 add_subdirectory(${CMAKE_BINARY_DIR}/../src)
 add_subdirectory(${CMAKE_BINARY_DIR}/../include)
@@ -34,6 +33,14 @@ foreach(filen ${HDR_FILES})
 endforeach(filen)
 include_directories(${CMAKE_BINARY_DIR}/../include)
 
+set(STB_IMAGE_URL "https://raw.githubusercontent.com/nothings/stb/master/stb_image.h")
+set(STB_IMAGE_PATH ${CMAKE_BINARY_DIR}/include)
+file(MAKE_DIRECTORY ${STB_IMAGE_PATH})
+if (NOT EXISTS ${STB_IMAGE_PATH}/stb_image.h)
+    file(DOWNLOAD ${STB_IMAGE_URL} ${STB_IMAGE_PATH}/stb_image.h)
+endif()
+include_directories(${CMAKE_BINARY_DIR}/include)
+
 
 add_executable(StarEngine ${ABSOLUTE_SRC_FILES} ${ABSOLUTE_HDR_FILES})
 #add_library(StarEngine ${ABSOLUTE_SRC_FILES})
@@ -43,16 +50,14 @@ add_definitions(-DGLEW_STATIC)
 if(WIN32)
     target_link_libraries(StarEngine debug ${EX_PROJ_BUILD_DIR}/GLFW_EX/src/Debug/glfw3${CMAKE_STATIC_LIBRARY_SUFFIX})
     target_link_libraries(StarEngine debug ${EX_PROJ_BUILD_DIR}/GLEW_EX/lib/Debug/glewd${CMAKE_STATIC_LIBRARY_SUFFIX})
-    target_link_libraries(StarEngine debug ${EX_PROJ_BUILD_DIR}/SOIL_EX/Debug/SOIL${CMAKE_STATIC_LIBRARY_SUFFIX})
     target_link_libraries(StarEngine optimized ${EX_PROJ_BUILD_DIR}/GLFW_EX/src/Release/glfw3${CMAKE_STATIC_LIBRARY_SUFFIX})
     target_link_libraries(StarEngine optimized ${EX_PROJ_BUILD_DIR}/GLEW_EX/lib/Release/glew${CMAKE_STATIC_LIBRARY_SUFFIX})
-    target_link_libraries(StarEngine optimized ${EX_PROJ_BUILD_DIR}/SOIL_EX/Release/SOIL${CMAKE_STATIC_LIBRARY_SUFFIX})
 	target_link_libraries(StarEngine ${OPENGL_LIBRARIES})
-endif(WIN32)
+endif()
 if(UNIX)
 	set(XRENDER_LIBS Xrandr Xcursor Xinerama Xxf86vm X11)
     target_link_libraries(StarEngine ${EX_PROJ_BUILD_DIR}/GLFW_EX/src/libglfw3${CMAKE_STATIC_LIBRARY_SUFFIX})
     target_link_libraries(StarEngine ${EX_PROJ_BUILD_DIR}/GLEW_EX/lib/libglew${CMAKE_STATIC_LIBRARY_SUFFIX})
 
     target_link_libraries(StarEngine ${OPENGL_LIBRARIES} ${XRENDER_LIBS} dl pthread)
-endif(UNIX)
+endif()
